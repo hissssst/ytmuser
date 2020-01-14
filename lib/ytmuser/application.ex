@@ -6,16 +6,14 @@ defmodule Ytmuser.Application do
   use Application
 
   def start(_type, _args) do
-    # List all child processes to be supervised
     children = [
-      # Start the endpoint when the application starts
-      YtmuserWeb.Endpoint
-      # Starts a worker by calling: Ytmuser.Worker.start_link(arg)
-      # {Ytmuser.Worker, arg},
+      YtmuserWeb.Endpoint,
+      {Ytmuser.Room, []}
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
+    # Create group for sharing stuff between clients
+    :pg2.create(:clients)
+
     opts = [strategy: :one_for_one, name: Ytmuser.Supervisor]
     Supervisor.start_link(children, opts)
   end
