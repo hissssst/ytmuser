@@ -8,11 +8,10 @@ defmodule Ytmuser.Application do
   def start(_type, _args) do
     children = [
       YtmuserWeb.Endpoint,
+      {Ytmuser.Ytdl, "tmp"},
+      {Ytmuser.Player, "tmp"},
       {Ytmuser.Room, []}
     ]
-
-    # Create group for sharing stuff between clients
-    :pg2.create(:clients)
 
     opts = [strategy: :one_for_one, name: Ytmuser.Supervisor]
     Supervisor.start_link(children, opts)
