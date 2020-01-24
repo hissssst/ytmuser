@@ -21,7 +21,7 @@ defmodule YtmuserWeb.MainLive do
     </form>
     <div id="chat-messages" name="div" phx-update="append">
       <%= for message <- @messages do %>
-        <div id="<%= message.id %>">
+        <div id="msgid<%= message.id %>">
           <p>
             <span><%= message.author %>: </span>
             <%= for line <- message.text  do %>
@@ -59,13 +59,12 @@ defmodule YtmuserWeb.MainLive do
   end
 
   def handle_info({:message, %{text: text} = value}, socket) do
-    Logger.debug("displaying #{text} message")
+    Logger.debug("displaying #{text} message with #{value.id}")
     value = %{value | text: String.split(text, "\n")}
     {:noreply, assign(socket, messages: [value])}
   end
 
   def handle_info({:player, player}, socket) do
-    Logger.debug("new player! #{inspect player}")
     {:noreply, assign(socket, player: player)}
   end
 
