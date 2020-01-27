@@ -40,6 +40,7 @@ defmodule Ytmuser.Ytdl do
       "--extract-audio",
       "--audio-format", "mp3",
       "--audio-quality", "0",
+      "--no-playlist",
       "-o", "#{dir}/%(title)s.%(ext)s",
       url
     ], [

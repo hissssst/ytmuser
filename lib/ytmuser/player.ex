@@ -84,7 +84,7 @@ defmodule Ytmuser.Player do
   defp command(arg) do
     System.cmd("playerctl", [arg])
   end
-    
+
   defp command(option, arg) do
     System.cmd("playerctl", [option, arg])
   end
@@ -100,8 +100,9 @@ defmodule Ytmuser.Player do
         String.trim(status)
       err ->
         Logger.error("#{__MODULE__} couldn't get status with #{inspect err}")
-        "No status"
+        ""
     end
+    |> to_default("No status")
   end
 
   def get_file() do
@@ -114,7 +115,12 @@ defmodule Ytmuser.Player do
         |> URI.decode()
       err ->
         Logger.error("#{__MODULE__} couldn't get file with #{inspect err}")
-        "No file"
+        ""
     end
+    |> to_default("No file")
   end
+
+  def to_default("", default), do: default
+  def to_default(str, _), do: str
+
 end

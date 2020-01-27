@@ -14,7 +14,7 @@ defmodule Ytmuser.Room do
   """
 
   def start_link(_) do
-    GenServer.start_link(__MODULE__, [], name: @name) 
+    GenServer.start_link(__MODULE__, [], name: @name)
   end
 
   def init(_) do
@@ -36,7 +36,7 @@ defmodule Ytmuser.Room do
   @spec new_message(binary(), Phoenix.LiveView.Socket.t()) :: any()
   def new_message(":help", %{root_pid: pid}) do
     system(@helpmessage, pid)
-  end 
+  end
   def new_message(":list", %{root_pid: pid}) do
     system(Player.list, pid)
   end

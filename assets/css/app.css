@@ -3,18 +3,43 @@
 @import "./phoenix.css";
 @import "../../deps/phoenix_live_view/assets/css/live_view.css";
 
-.pidor {
-	display: flex;
-	flex-direction: row;
-	padding: 20px;
+.player {
+	display:             flex;
+	margin-bottom:       20px;
+	flex-wrap:           wrap;
+	align-items:         stretch;
+	justify-content:     space-around;
 }
-.img {
+.thumbnail {
 	background-position: center;
-	width: 960px;
-	height: 540px;
+	background-repeat:   no-repeat;
+	background-size:     cover;
+	background-color:    #ffffff;
+	height:              540px;
+	width:               540px;
+	box-shadow:          0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
-.text {
-	margin-left: 20px;
-	display: flex;
-	flex-direction: column;
+.audiopanel {
+	margin:              5%;
+	display:             flex;
+	flex-basis:          30%;
+	flex-grow:           99;
+	flex-direction:      column;
+	justify-content:     center;
+}
+.audioline {
+	display:             flex;
+	justify-content:     space-between;
+	width:               100%;
+}
+.audioprogress {
+	align-self:          stretch;
+	display:             flex;
+	background-color:    #aaa;
+	border-radius:       2px;
+	box-shadow:          0 2px 5px rgba(0, 0, 0, 0.25) inset;
+	-webkit-appearance:  none;
+
+	height:              20px;
+	width:               100%;
 }

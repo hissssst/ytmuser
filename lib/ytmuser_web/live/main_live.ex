@@ -4,20 +4,27 @@ defmodule YtmuserWeb.MainLive do
 
   def render(assigns) do
     ~L"""
-    <div id="player" class="pidor" phx-update="replace">
-      <img class="img" src="<%= @player.thumbnail %>">
-      <div class="text">
-        <label><%= @player.file %></label>
-        <label><%= @player.status %></label>
+    <div id="player" class="player" phx-update="replace">
+      <div
+        class="thumbnail"
+        style="background-image: url(<%= @player.thumbnail %>)"
+      >
+      </div>
+      <div class="audiopanel">
+        <div class="audioline">
+          <div><label><%= @player.file %></label></div>
+          <div><%= @player.status %></div>
+        </div>
+        <progress value="1" max="5" class="audioprogress"/></progress>
       </div>
     </div>
     <form phx-submit="submit" phx-throttle="2000">
-    <input 
-      type="text"
-      name="userinput"
-      placeholder="type: ':help' to see the help message"
-    >
-    <label>Logged as <%= @myname %></label>
+      <input
+        type="text"
+        name="userinput"
+        placeholder="type: ':help' to see the help message"
+      >
+      <label>Logged as <%= @myname %></label>
     </form>
     <div id="chat-messages" name="div" phx-update="append">
       <%= for message <- @messages do %>
